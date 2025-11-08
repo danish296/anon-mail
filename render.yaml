@@ -1,0 +1,27 @@
+# Render Blueprint for Python Backend
+services:
+  - type: web
+    name: quick-mail-sender-api
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: BREVO_API_KEY
+        sync: false
+      - key: BREVO_FROM_EMAIL
+        sync: false
+      - key: BREVO_FROM_NAME
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: APP_NAME
+        value: Quick Mail Sender
+      - key: APP_VERSION
+        value: 1.0
+      - key: DEBUG
+        value: False
